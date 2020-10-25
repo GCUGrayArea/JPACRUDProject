@@ -14,9 +14,11 @@ Key: ${ sym.musicalKey }<br>
 Movements: ${ sym.movements }<br>
 <br>
 <a href="updateForm.do?id=${ sym.id }">Update this record</a><br>
-<%-- <a href="delete.do?id=${ sym.id }">Delete this record</a> --%>
-<form action="delete.do?=${ sym.id }" method="POST">
-<input type="submit" value="Delete this record">
+<a href="delete.do?id=${ sym.id }">Delete this record</a>
+<%-- <form action="delete.do?id=${ sym.id }" method="POST">
+<input type="submit" value="Delete this record"> --%>
 </form>
+
+<a href="/">Find another symphony</a>
 </body>
 </html>

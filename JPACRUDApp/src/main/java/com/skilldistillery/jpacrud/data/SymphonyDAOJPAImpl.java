@@ -1,5 +1,6 @@
 package com.skilldistillery.jpacrud.data;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -75,10 +76,28 @@ public class SymphonyDAOJPAImpl implements SymphonyDAO {
 	@Override
 	public boolean deleteById(int id) {
 		
-		em.remove( em.find( Symphony.class , id ) );
-		em.getTransaction().commit();
+//		em.remove( em.find( Symphony.class , id ) );
+//		em.getTransaction().commit();
+//		
+//		return em.find( Symphony.class , id ) == null;
+		try {
+			
+			Symphony original = em.find(Symphony.class , id );
 		
-		return em.find( Symphony.class , id ) == null;
+			String query = "DELETE FROM Symphony s WHERE id = :id";
+		
+			em
+			.createQuery(query)
+			.setParameter( "id", id )
+			.executeUpdate();
+		
+		} catch ( Exception e ) {
+		
+			return false;
+		
+		}
+		
+		return true;
 		
 	}
 

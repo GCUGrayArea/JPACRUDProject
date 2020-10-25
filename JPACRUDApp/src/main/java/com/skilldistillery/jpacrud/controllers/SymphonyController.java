@@ -95,13 +95,13 @@ public class SymphonyController {
 		
 	}
 	
-	@RequestMapping( path = "delete.do" , method = RequestMethod.POST )
+	@RequestMapping( path = "delete.do" )
 	public ModelAndView deleteSymphony( int id ) {
 		
-		dao.deleteById( id );
+		
 		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject( "sym" , dao.findById( id ) );
+		mv.addObject( "successful" ,  dao.deleteById( id ) );
 		mv.setViewName("deleted");
 		
 		return mv;
