@@ -24,9 +24,8 @@ CREATE TABLE IF NOT EXISTS `symphony` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `composer` VARCHAR(45) NOT NULL,
-  `Key` VARCHAR(45) NULL,
+  `musical_key` VARCHAR(45) NULL,
   `movements` TINYINT NULL,
-  `year` YEAR NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -46,7 +45,18 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `symphonydb`;
-INSERT INTO `symphony` (`id`, `name`, `composer`, `Key`, `movements`, `year`) VALUES (1, 'Symphony No. 2 \"Resurrection\"', 'Gustav Mahler', 'C minor', 5, NULL);
+INSERT INTO `symphony` (`id`, `name`, `composer`, `musical_key`, `movements`) VALUES (1, 'Symphony No. 2 \"Resurrection\"', 'Gustav Mahler', 'C minor', 5);
+INSERT INTO `symphony` (`id`, `name`, `composer`, `musical_key`, `movements`) VALUES (12, 'Symphony No. 3 \"Le Divin Poème\"', 'Alexander Scriabin', 'C minor', 4);
+INSERT INTO `symphony` (`id`, `name`, `composer`, `musical_key`, `movements`) VALUES (3, 'A Faust Symphony in three character pictures', 'Franz Liszt', 'C major', 3);
+INSERT INTO `symphony` (`id`, `name`, `composer`, `musical_key`, `movements`) VALUES (11, 'Symphony in C', 'Igor Stravinsky', 'C major', 4);
+INSERT INTO `symphony` (`id`, `name`, `composer`, `musical_key`, `movements`) VALUES (6, 'Symphony No. 96 \"Miracle\"', 'Joseph Haydn', 'D major', 4);
+INSERT INTO `symphony` (`id`, `name`, `composer`, `musical_key`, `movements`) VALUES (7, 'Symphony No. 38 \"Prague\"', 'Wolfgang Amadeus Mozart', 'D major', 3);
+INSERT INTO `symphony` (`id`, `name`, `composer`, `musical_key`, `movements`) VALUES (5, 'Symphony No. 5 \"Reformation\"', 'Felix Mendelssohn', 'D minor', 4);
+INSERT INTO `symphony` (`id`, `name`, `composer`, `musical_key`, `movements`) VALUES (2, 'Symphony No. 26 \"Lamentatione\"', 'Joseph Haydn', 'D minor', 3);
+INSERT INTO `symphony` (`id`, `name`, `composer`, `musical_key`, `movements`) VALUES (4, 'Symphony No. 8 \"Symphony of a Thousand\"', 'Gustav Mahler', 'E flat major', 2);
+INSERT INTO `symphony` (`id`, `name`, `composer`, `musical_key`, `movements`) VALUES (10, 'Symphony No. 3 \"The First of May\"', 'Dmitri Shostakovich', 'E flat major', 4);
+INSERT INTO `symphony` (`id`, `name`, `composer`, `musical_key`, `movements`) VALUES (8, 'Symphony No. 6', 'Nikolai Myaskovsky', 'E flat minor', 4);
+INSERT INTO `symphony` (`id`, `name`, `composer`, `musical_key`, `movements`) VALUES (9, 'Symphony No. 6', 'Sergei Prokofiev', 'E flat minor', 3);
 
 COMMIT;
 
