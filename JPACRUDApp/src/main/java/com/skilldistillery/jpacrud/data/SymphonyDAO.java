@@ -13,7 +13,12 @@ public interface SymphonyDAO {
 	public List<Symphony> findByMovements( byte movements );
 	public Symphony addSymphony( Symphony symphony );
 	public boolean deleteById( int id );
-	public boolean updateSymphony( Symphony symphony );
-
+//	public boolean updateSymphony(
+//			int id ,
+//			String name ,
+//			String composer ,
+//			String musicalKey ,
+//			String movements );
+	public boolean updateSymphony( Symphony sym );
 }
 

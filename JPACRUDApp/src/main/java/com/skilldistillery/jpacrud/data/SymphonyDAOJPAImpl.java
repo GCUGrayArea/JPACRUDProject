@@ -17,7 +17,7 @@ public class SymphonyDAOJPAImpl implements SymphonyDAO {
 	
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@Override
 	public Symphony findById(int id) {
 		
@@ -54,7 +54,7 @@ public class SymphonyDAOJPAImpl implements SymphonyDAO {
 	@Override
 	public List<Symphony> findByComposer(String composer) {
 		
-		String query = "SELECT s FROM Symphony s WHERE composer = :composer";
+		String query = "SELECT s FROM Symphony s WHERE composer LIKE :composer";
 		return em
 			.createQuery( query )
 			.setParameter( "composer" , composer )
@@ -102,25 +102,16 @@ public class SymphonyDAOJPAImpl implements SymphonyDAO {
 	}
 
 	@Override
-	public boolean updateSymphony(Symphony symphony) {
+	public boolean updateSymphony( Symphony sym ) {
 		
-		String update = "UPDATE Symphony s SET " +
-				"name = :name , composer = :composer , " +
-				"key = :key , movements = :movements " +
-				"WHERE id = :id";
+		Symphony managed = em.find( Symphony.class, sym.getId() );
+		managed.setComposer( sym.getComposer() );
+		managed.setMovements( sym.getMovements() );
+		managed.setMusicalKey( sym.getMusicalKey() );
+		managed.setName( sym.getName() );
+		em.persist(managed);
 		
-		em
-		.createQuery( update )
-		.setParameter("name", symphony.getName() )
-		.setParameter("composer", symphony.getComposer() )
-		.setParameter("key", symphony.getMusicalKey() )
-		.setParameter("movements", symphony.getMovements() )
-		.setParameter("id" , symphony.getId() )
-		.executeUpdate();
-		
-		em.getTransaction().commit();
-		
-		return symphony.equals( em.find(Symphony.class , symphony.getId()));
+		return true;
 		
 	}
 

@@ -1,5 +1,7 @@
 package com.skilldistillery.jpacrud.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -68,8 +70,9 @@ public class SymphonyController {
 	}
 	
 	@RequestMapping( path="find.do" , params="id" , method = RequestMethod.GET )
-	public ModelAndView getSymphonyById( int id ) {
+	public ModelAndView getSymphonyById( int id , HttpSession session ) {
 		ModelAndView mv = new ModelAndView();
+		session.setAttribute("workingId", id);
 		mv.setViewName( "result" );
 		mv.addObject( "sym" , dao.findById( id ) );
 		
@@ -94,6 +97,41 @@ public class SymphonyController {
 		return mv;
 		
 	}
+	
+	@RequestMapping( path = "updateForm.do")
+	public ModelAndView formUpdateSym( int id ) {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName( "updateForm" );
+		mv.addObject( "sym" , dao.findById( id ) );
+		
+		return mv;
+		
+	}
+	
+	@RequestMapping( path = "update.do" )
+	public ModelAndView updateSym( 
+		HttpSession session ,
+		String name ,
+		String composer ,
+		String musicalKey ,
+		String movements ) {
+		
+		Symphony sym = new Symphony();
+		sym.setId( (Integer) session.getAttribute("workingId") );
+		sym.setName( name );
+		sym.setComposer( composer );
+		sym.setMusicalKey( musicalKey );
+		sym.setMovements( Byte.parseByte( movements ) );
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("updated");
+		mv.addObject( "successful" , dao.updateSymphony( sym ) );
+		
+		return mv;
+		
+	}
+	
 	
 	@RequestMapping( path = "delete.do" )
 	public ModelAndView deleteSymphony( int id ) {
