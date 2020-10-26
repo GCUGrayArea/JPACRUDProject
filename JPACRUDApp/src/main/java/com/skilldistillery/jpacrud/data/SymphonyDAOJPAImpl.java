@@ -104,12 +104,16 @@ public class SymphonyDAOJPAImpl implements SymphonyDAO {
 	@Override
 	public boolean updateSymphony( Symphony sym ) {
 		
-		Symphony managed = em.find( Symphony.class, sym.getId() );
-		managed.setComposer( sym.getComposer() );
-		managed.setMovements( sym.getMovements() );
-		managed.setMusicalKey( sym.getMusicalKey() );
-		managed.setName( sym.getName() );
-		em.persist(managed);
+		try {
+			Symphony managed = em.find( Symphony.class, sym.getId() );
+			managed.setComposer( sym.getComposer() );
+			managed.setMovements( sym.getMovements() );
+			managed.setMusicalKey( sym.getMusicalKey() );
+			managed.setName( sym.getName() );
+			em.persist(managed);
+		} catch (Exception e) {
+			return false;
+		}
 		
 		return true;
 		
