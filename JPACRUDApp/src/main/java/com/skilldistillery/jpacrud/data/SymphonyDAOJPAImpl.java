@@ -43,10 +43,10 @@ public class SymphonyDAOJPAImpl implements SymphonyDAO {
 	@Override
 	public List<Symphony> findByKey(String key) {
 		
-		String query = "SELECT s FROM Symphony s WHERE key = :key";
+		String query = "SELECT s FROM Symphony s WHERE key LIKE :key";
 		return em
 			.createQuery( query )
-			.setParameter("key" , key)
+			.setParameter("key" , "%" + key + "%")
 			.getResultList();
 		
 	}
@@ -57,7 +57,7 @@ public class SymphonyDAOJPAImpl implements SymphonyDAO {
 		String query = "SELECT s FROM Symphony s WHERE composer LIKE :composer";
 		return em
 			.createQuery( query )
-			.setParameter( "composer" , composer )
+			.setParameter( "composer" , "%" + composer + "%")
 			.getResultList();
 			
 	}

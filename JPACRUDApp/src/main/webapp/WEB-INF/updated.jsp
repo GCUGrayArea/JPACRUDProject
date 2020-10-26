@@ -17,6 +17,6 @@
     </c:otherwise>
 	</c:choose>
 	<br>
-	<a href="/">Home</a>		
+	<a href="index.do">Home</a>		
 </body>
 </html>

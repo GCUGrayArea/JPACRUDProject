@@ -19,7 +19,7 @@ public class SymphonyController {
 	@Autowired
 	private SymphonyDAO dao;
 	
-	@RequestMapping(path="/")
+	@RequestMapping( path = { "/" , "index.do" } )
 	public ModelAndView index() {
 		
 		ModelAndView mv = new ModelAndView();
@@ -29,6 +29,8 @@ public class SymphonyController {
 		return mv;
 	  
 	}
+	
+	
 	
 	@RequestMapping(path = "createForm.do", method = RequestMethod.GET)
 	public String formCreateSymphony() {

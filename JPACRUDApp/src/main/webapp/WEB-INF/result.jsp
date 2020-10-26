@@ -19,6 +19,6 @@ Movements: ${ sym.movements }<br>
 <input type="submit" value="Delete this record"> --%>
 </form>
 
-<a href="/">Find another symphony</a>
+<a href="index.do">Find another symphony</a>
 </body>
 </html>

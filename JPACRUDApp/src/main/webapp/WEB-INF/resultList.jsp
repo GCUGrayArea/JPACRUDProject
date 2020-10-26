@@ -21,6 +21,6 @@
 		No results were found
 	</c:otherwise>
 </c:choose>
-<a href="/">Home</a>
+<a href="index.do">Home</a>
 </body>
 </html>
